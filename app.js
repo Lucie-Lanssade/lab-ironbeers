@@ -19,14 +19,29 @@ hbs.registerPartials(path.join(__dirname, 'views', 'partials'));
 // Add the route handlers here:
 
 app.get('/', (request, response) => {
-  response.render('index', { title: 'home' });
+  response.render('index', { title: 'home', css: ['main', 'home'] });
 });
 
 app.get('/beers', async (req, res, next) => {
   try {
     const allBeers = await punkAPI.getBeers();
 
-    res.render('beers', { allBeers, title: 'All Beers' });
+    res.render('beers', {
+      allBeers,
+      title: 'All Beers',
+      css: ['main', 'beers']
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.get('/onebeer/:id', async (request, response, next) => {
+  try {
+    const id = request.params.id;
+    const myBeer = await punkAPI.getBeer(id);
+
+    response.render('onebeer', { myBeer, title: 'My beer' });
   } catch (error) {
     next(error);
   }
@@ -35,7 +50,11 @@ app.get('/beers', async (req, res, next) => {
 app.get('/random-beer', async (request, response) => {
   try {
     const random = await punkAPI.getRandom();
-    response.render('random-beer', { random: random[0], title: 'Random Beer' });
+    response.render('random-beer', {
+      random: random[0],
+      title: 'Random Beer',
+      css: ['main', 'random']
+    });
   } catch (error) {
     next(error);
   }

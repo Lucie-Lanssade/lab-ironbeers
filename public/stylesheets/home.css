@@ -1,0 +1,23 @@
+.home-btn {
+    background-color: #2081c3;
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+    padding: 0.8rem 1.2rem;
+    max-width: 230px;
+    border-radius: 10px;
+    box-shadow: -1px 5px 5px 0px rgba(0, 0, 0, 0.41);
+}
+
+.home img {
+    width: 22%;
+    height: auto;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 8rem 0;
+    align-items: center;
+}
